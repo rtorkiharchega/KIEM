@@ -150,25 +150,17 @@
       const a = document.createElement('a');
       a.href = url;
       a.download = 'survey_responses.csv';
-      document.body.appendChild(a);       // Append it to make it clickable in all browsers
+      document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);       // Clean up
-      URL.revokeObjectURL(url);           // Free memory
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
-      const csv = 'datetime,response\n' + data.map(d => `${d.datetime},${d.response}`).join('\n');
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'survey_responses.csv';
-      a.click();
-    
-
     function resetResponses() {
-        if (confirm('Are you sure you want to delete all responses? This cannot be undone.')) {
-            localStorage.removeItem('surveyResponses');
-            alert('Survey data has been reset.');
-        }
+      if (confirm('Are you sure you want to delete all responses? This cannot be undone.')) {
+        localStorage.removeItem('surveyResponses');
+        alert('Survey data has been reset.');
+      }
     }
   </script>
 </body>

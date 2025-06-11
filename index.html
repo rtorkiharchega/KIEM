@@ -143,6 +143,19 @@
         return;
       }
 
+      const csv = 'datetime,response\n' + data.map(d => `"${d.datetime}","${d.response}"`).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'survey_responses.csv';
+      document.body.appendChild(a);       // Append it to make it clickable in all browsers
+      a.click();
+      document.body.removeChild(a);       // Clean up
+      URL.revokeObjectURL(url);           // Free memory
+    }
+
       const csv = 'datetime,response\n' + data.map(d => `${d.datetime},${d.response}`).join('\n');
       const blob = new Blob([csv], { type: 'text/csv' });
       const a = document.createElement('a');

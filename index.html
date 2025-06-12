@@ -81,14 +81,14 @@
       border-radius: 8px;
       border: none;
       cursor: pointer;
-      background-color: #4a7ac7; /* darker blue */
+      background-color: #4a7ac7; 
       color: white;
       transition: background 0.3s;
       margin-bottom: 30px; /* spacing below the button */
     }
 
     .admin-action-button:hover {
-      background-color: #3a649f; /* darker hover */
+      background-color: #4a7ac7; /* darker hover */
     }
 
     #password-modal {
@@ -113,6 +113,7 @@
     }
 
     #password-box {
+      position: relative;
       background: white;
       padding: 20px;
       border-radius: 10px;
@@ -149,6 +150,20 @@
       font-size: 1rem;
       cursor: pointer;
     }
+
+    #close-modal {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: #888;
+        transition: color 0.2s;
+    }
+
+    #close-modal:hover {
+        color: #333;
+    }
   </style>
 </head>
 <body>
@@ -174,6 +189,7 @@
   <!-- Password Modal -->
   <div id="password-modal">
     <div id="password-box">
+      <span id="close-modal" onclick="closePasswordModal()">✖</span>
       <label for="admin-password">Voer wachtwoord in:</label>
       <input type="password" id="admin-password" autocomplete="off" />
       <button onclick="checkPassword()">Doorgaan</button>
@@ -261,6 +277,9 @@
       } else {
         alert('Onjuist wachtwoord!');
       }
+    }
+    function closePasswordModal() {
+        document.getElementById('password-modal').classList.remove('show');
     }
   </script>
 </body>

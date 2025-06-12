@@ -19,7 +19,7 @@
     }
 
     h1 {
-      font-size: 4rem;
+      font-size: 3rem;
       margin-bottom: 30px;
     }
 
@@ -71,6 +71,22 @@
 
     .admin-buttons button:hover {
       background-color: #72a7dc;
+    }
+
+    .admin-action-button {
+        padding: 12px 20px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        background-color: #4a7ac7; /* a bit darker blue */
+        color: white;
+        transition: background 0.3s;
+    }
+
+    .admin-action-button:hover {
+        background-color: #3a649f; /* darker hover */
     }
 
     #password-modal {
@@ -141,7 +157,7 @@
     <button class="emoji-button" onclick="submitFeedback('sad')">😞</button>
   </div>
 
-  <button onclick="showPasswordModal()">🔒 Admin Actie</button>
+  <button class="admin-action-button" onclick="showPasswordModal()">🔒 Admin Actie</button>
 
   <div class="admin-buttons">
     <button onclick="exportCSV()">📥 Exporteren naar CSV</button>

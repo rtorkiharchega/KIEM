@@ -20,7 +20,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: start;
+      justify-content: center;
       padding: 40px 20px;
       min-height: 100vh;
     }
@@ -171,23 +171,30 @@
     #close-modal:hover {
         color: #333;
     }
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
   </style>
 </head>
 <body>
+  <div class="main-content">
+    <h1>Hoe tevreden bent u met dit evenement?</h1>
 
-  <h1>Hoe tevreden bent u met dit evenement?</h1>
+    <div id="thanks">🎉 Bedankt voor uw feedback!</div>
 
-  <div id="thanks">🎉 Bedankt voor uw feedback!</div>
+    <div class="emoji-buttons">
+        <button class="emoji-button" onclick="submitFeedback('happy')">😊</button>
+        <button class="emoji-button" onclick="submitFeedback('neutral')">😐</button>
+        <button class="emoji-button" onclick="submitFeedback('sad')">😞</button>
+    </div>
 
-  <div class="emoji-buttons">
-    <button class="emoji-button" onclick="submitFeedback('happy')">😊</button>
-    <button class="emoji-button" onclick="submitFeedback('neutral')">😐</button>
-    <button class="emoji-button" onclick="submitFeedback('sad')">😞</button>
+    <!-- Admin Actie button with new class -->
+    <button class="admin-action-button" onclick="showPasswordModal()">🔒 Admin Actie</button>
   </div>
-
-  <!-- Admin Actie button with new class -->
-  <button class="admin-action-button" onclick="showPasswordModal()">🔒 Admin Actie</button>
-
   <div class="admin-buttons">
     <button onclick="exportCSV()">📥 Exporteren naar CSV</button>
     <button onclick="resetResponses()">🔄 Gegevens Resetten</button>

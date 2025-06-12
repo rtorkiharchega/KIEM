@@ -73,20 +73,22 @@
       background-color: #72a7dc;
     }
 
+    /* New styles for the Admin Actie button */
     .admin-action-button {
-        padding: 12px 20px;
-        font-size: 1rem;
-        font-weight: 600;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        background-color: #4a7ac7; /* a bit darker blue */
-        color: white;
-        transition: background 0.3s;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background-color: #4a7ac7; /* darker blue */
+      color: white;
+      transition: background 0.3s;
+      margin-bottom: 30px; /* spacing below the button */
     }
 
     .admin-action-button:hover {
-        background-color: #3a649f; /* darker hover */
+      background-color: #3a649f; /* darker hover */
     }
 
     #password-modal {
@@ -157,6 +159,7 @@
     <button class="emoji-button" onclick="submitFeedback('sad')">😞</button>
   </div>
 
+  <!-- Admin Actie button with new class -->
   <button class="admin-action-button" onclick="showPasswordModal()">🔒 Admin Actie</button>
 
   <div class="admin-buttons">

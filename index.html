@@ -153,18 +153,16 @@
 
     #close-modal {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        background: transparent;
-        border: none;
-        font-size: 1.5rem;
+        top: 12px;
+        right: 16px;
+        font-size: 1.2rem;
         cursor: pointer;
-        color: #666;
+        color: #888;
         transition: color 0.2s;
     }
 
     #close-modal:hover {
-        color: #000;
+        color: #333;
     }
   </style>
 </head>
@@ -192,7 +190,7 @@
   <div id="password-modal">
     <div id="password-box">
         <form id="password-form" onsubmit="event.preventDefault(); checkPassword();">
-            <button id="close-modal" onclick="closePasswordModal()" aria-label="Sluit venster">❌</button>
+            <span id="close-modal" onclick="closePasswordModal()">✖</span>
             <label for="admin-password">Voer wachtwoord in:</label>
             <input type="password" id="admin-password" autocomplete="off" />
             <button onclick="checkPassword()">Doorgaan</button>

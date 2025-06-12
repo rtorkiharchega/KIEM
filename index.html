@@ -30,7 +30,7 @@
     }
 
     .emoji-button {
-      font-size: 120px;
+      font-size: 150px;
       border: none;
       background: none;
       cursor: pointer;
@@ -49,12 +49,12 @@
     }
 
     .admin-buttons {
-        display: flex;
-        flex-direction: row; /* change to row */
-        gap: 15px;
-        margin-top: 30px;
-        justify-content: center;
-        flex-wrap: wrap;
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      margin-top: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .admin-buttons button {
@@ -65,24 +65,12 @@
       border: none;
       cursor: pointer;
       transition: background 0.3s;
-    }
-
-    .admin-buttons button:first-child {
       background-color: #85bbf4;
       color: white;
     }
 
-    .admin-buttons button:first-child:hover {
-      background-color: #85bbf4;
-    }
-
-    .admin-buttons button:last-child {
-      background-color: #85bbf4;
-      color: white;
-    }
-
-    .admin-buttons button:last-child:hover {
-      background-color: #85bbf4;
+    .admin-buttons button:hover {
+      background-color: #5fa3ef;
     }
   </style>
 </head>
@@ -97,11 +85,11 @@
     <button class="emoji-button" onclick="submitFeedback('sad')">😞</button>
   </div>
 
-  <div class="admin-buttons">
+  <div class="admin-buttons" id="adminButtons" style="display: none;">
     <button onclick="exportCSV()">📥 Exporteren naar CSV</button>
     <button onclick="resetResponses()">🔄 Gegevens Resetten</button>
   </div>
-  
+
   <script>
     function submitFeedback(response) {
       const map = {
@@ -162,6 +150,14 @@
         alert('Survey data has been reset.');
       }
     }
+
+    // Admin toggle with Shift + A
+    document.addEventListener('keydown', (e) => {
+      if (e.shiftKey && e.key.toLowerCase() === 'a') {
+        const adminPanel = document.getElementById('adminButtons');
+        adminPanel.style.display = adminPanel.style.display === 'none' ? 'flex' : 'none';
+      }
+    });
   </script>
 </body>
 </html>

@@ -28,12 +28,19 @@
     h1 {
       font-size: 2.5rem;
       margin-bottom: 30px;
+      white-space: nowrap;  /* prevent line breaks */
+      overflow-x: auto;     /* allow horizontal scroll if needed */
+      text-align: center;   /* keep centered */
     }
 
     .emoji-buttons {
-      display: flex;
-      gap: 40px;
-      margin-bottom: 40px;
+        display: flex;
+        justify-content: center;  /* explicitly center horizontally */
+        gap: 40px;
+        margin-bottom: 40px;
+        width: 100%;              /* make sure container is full width */
+        max-width: 500px;         /* optional max width to keep it neat */
+        box-sizing: border-box;   /* include padding in width */
     }
 
     .emoji-button {

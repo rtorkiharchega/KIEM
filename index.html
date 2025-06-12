@@ -278,6 +278,11 @@
         alert('Onjuist wachtwoord!');
       }
     }
+    document.getElementById('admin-password').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        checkPassword();
+        }
+    });
     function closePasswordModal() {
         document.getElementById('password-modal').classList.remove('show');
     }

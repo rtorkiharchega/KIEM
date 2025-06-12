@@ -19,7 +19,7 @@
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 3rem;
       margin-bottom: 30px;
     }
 
@@ -72,6 +72,46 @@
     .admin-buttons button:hover {
       background-color: #6ca7e6;
     }
+
+    #password-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #password-box {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    #password-box input {
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    #password-box button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      background-color: #85bbf4;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #password-box button:hover {
+      background-color: #6ca7e6;
+    }
   </style>
 </head>
 <body>
@@ -86,12 +126,22 @@
   </div>
 
   <div class="admin-buttons">
-    <button onclick="secureExport()">📥 Exporteren naar CSV</button>
-    <button onclick="secureReset()">🔄 Gegevens Resetten</button>
+    <button onclick="requestPassword('export')">📥 Exporteren naar CSV</button>
+    <button onclick="requestPassword('reset')">🔄 Gegevens Resetten</button>
+  </div>
+
+  <!-- Password Modal -->
+  <div id="password-modal">
+    <div id="password-box">
+      <p>Beheerderswachtwoord:</p>
+      <input type="password" id="admin-password" />
+      <button onclick="checkPassword()">Doorgaan</button>
+    </div>
   </div>
 
   <script>
-    const ADMIN_PASSWORD = "kiem.2025"; // Change this if needed
+    const ADMIN_PASSWORD = "kiem.2025";
+    let pendingAction = null;
 
     function submitFeedback(response) {
       const map = {
@@ -126,26 +176,32 @@
       setTimeout(() => { thanks.style.display = 'none'; }, 1500);
     }
 
-    function secureExport() {
-      const pwd = prompt("Voer het beheerderswachtwoord in:");
-      if (pwd !== ADMIN_PASSWORD) {
-        alert("Onjuist wachtwoord.");
-        return;
-      }
-      exportCSV();
+    function requestPassword(action) {
+      pendingAction = action;
+      document.getElementById("admin-password").value = "";
+      document.getElementById("password-modal").style.display = "flex";
     }
 
-    function secureReset() {
-      const pwd = prompt("Voer het beheerderswachtwoord in:");
-      if (pwd !== ADMIN_PASSWORD) {
+    function checkPassword() {
+      const input = document.getElementById("admin-password").value;
+      const modal = document.getElementById("password-modal");
+      modal.style.display = "none";
+
+      if (input !== ADMIN_PASSWORD) {
         alert("Onjuist wachtwoord.");
         return;
       }
 
-      if (confirm("Weet u zeker dat u alle reacties wilt verwijderen?")) {
-        localStorage.removeItem("surveyResponses");
-        alert("Reacties zijn verwijderd.");
+      if (pendingAction === "export") {
+        exportCSV();
+      } else if (pendingAction === "reset") {
+        if (confirm("Weet u zeker dat u alle reacties wilt verwijderen?")) {
+          localStorage.removeItem("surveyResponses");
+          alert("Reacties zijn verwijderd.");
+        }
       }
+
+      pendingAction = null;
     }
 
     function exportCSV() {

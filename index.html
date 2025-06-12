@@ -259,12 +259,23 @@
     }
 
     function showPasswordModal() {
-      const modal = document.getElementById('password-modal');
-      modal.classList.add('show');
-      document.getElementById('admin-password').value = '';
-      setTimeout(() => {
-        document.getElementById('admin-password').focus();
-      }, 100);
+        const modal = document.getElementById('password-modal');
+        modal.classList.add('show');
+        const input = document.getElementById('admin-password');
+        input.value = '';
+
+        // ✅ Focus the input
+        setTimeout(() => {
+            input.focus();
+        }, 100);
+
+        // ✅ Add Enter key support
+        input.addEventListener('keydown', function handler(e) {
+            if (e.key === 'Enter') {
+            checkPassword();
+            input.removeEventListener('keydown', handler); // Remove to avoid duplicate triggers
+            }
+        });
     }
 
     function checkPassword() {
@@ -278,11 +289,6 @@
         alert('Onjuist wachtwoord!');
       }
     }
-    document.getElementById('admin-password').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        checkPassword();
-        }
-    });
     function closePasswordModal() {
         document.getElementById('password-modal').classList.remove('show');
     }

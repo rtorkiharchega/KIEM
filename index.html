@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Satisfaction Survey</title>
+  <meta name="theme-color" content="#0b85b5" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="icon" href="images/app-icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="images/app-icon.png" />
+  <link rel="manifest" href="manifest.json" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -293,6 +300,15 @@
     }
     function closePasswordModal() {
         document.getElementById('password-modal').classList.remove('show');
+    }
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+            .then(reg => console.log('✅ Service Worker registered!', reg))
+            .catch(err => console.error('❌ Service Worker registration failed:', err));
+        });
     }
   </script>
 </body>

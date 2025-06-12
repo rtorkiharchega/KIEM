@@ -85,12 +85,14 @@
     <button class="emoji-button" onclick="submitFeedback('sad')">😞</button>
   </div>
 
-  <div class="admin-buttons" id="adminButtons">
+  <div class="admin-buttons">
     <button onclick="secureExport()">📥 Exporteren naar CSV</button>
     <button onclick="secureReset()">🔄 Gegevens Resetten</button>
   </div>
 
   <script>
+    const ADMIN_PASSWORD = "kiem.2025"; // Change this if needed
+
     function submitFeedback(response) {
       const map = {
         happy: 'satisfied',
@@ -124,15 +126,9 @@
       setTimeout(() => { thanks.style.display = 'none'; }, 1500);
     }
 
-    const ADMIN_PASSWORD = "kiem.2025";
-
-    function checkPassword() {
-      const input = prompt("Voer het beheerderswachtwoord in:");
-      return input === ADMIN_PASSWORD;
-    }
-
     function secureExport() {
-      if (!checkPassword()) {
+      const pwd = prompt("Voer het beheerderswachtwoord in:");
+      if (pwd !== ADMIN_PASSWORD) {
         alert("Onjuist wachtwoord.");
         return;
       }
@@ -140,13 +136,15 @@
     }
 
     function secureReset() {
-      if (!checkPassword()) {
+      const pwd = prompt("Voer het beheerderswachtwoord in:");
+      if (pwd !== ADMIN_PASSWORD) {
         alert("Onjuist wachtwoord.");
         return;
       }
-      if (confirm('Weet u zeker dat u alle reacties wilt verwijderen?')) {
-        localStorage.removeItem('surveyResponses');
-        alert('Reacties zijn verwijderd.');
+
+      if (confirm("Weet u zeker dat u alle reacties wilt verwijderen?")) {
+        localStorage.removeItem("surveyResponses");
+        alert("Reacties zijn verwijderd.");
       }
     }
 
